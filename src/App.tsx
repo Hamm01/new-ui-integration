@@ -1,3 +1,3 @@
 export default function App() {
-  return null
+  return <h1 className="text-red-500">Himanish</h1>
 }
