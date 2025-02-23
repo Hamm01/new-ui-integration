@@ -7,7 +7,7 @@ type ButtonProps = {
 } & ComponentProps<"button">
 
 export function Button({ variant = "primary", ...props }: ButtonProps) {
-    return <button {...props} className="bg-blue-700 hover:bg-blue-600 transition-colors rounded px-2 py-1 disabled:opacity-30 disabled:cursor-not-allowed" />
+    return <button {...props} className={`${getVariant(variant)}transition-colors rounded px-2 py-1 disabled:opacity-30 disabled:cursor-not-allowed`} />
 }
 
 function getVariant(variant: Variant) {
