@@ -10,10 +10,14 @@ export default function App() {
     setHabits(currhabit => [...currhabit, { id: crypto.randomUUID(), name }])
   }
 
+  function deleteHabit(id: string) {
+    setHabits(currhabit => currhabit.filter(h => h.id !== id))
+  }
+
   return <div className="max-w-2xl mx-auto p-4 flex flex-col gap-4">
     <Header />
     <HabitForm addHabit={addHabit} />
-    <HabitList habits={habits} />
+    <HabitList habits={habits} deleteHabit={deleteHabit} />
   </div>
 }
 
