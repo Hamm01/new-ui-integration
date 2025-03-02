@@ -1,18 +1,19 @@
-import { useState, type SubmitEvent } from "react";
+import { useContext, useState, type SubmitEvent } from "react";
 import { Button } from "./Buttons";
+import { HabitContext } from "../context/HabitProvider";
 
-type HabitFormProps = {
-    addHabit: (name: string) => void
-}
 
-export function HabitForm({ addHabit }: HabitFormProps) {
+
+export function HabitForm() {
     const [name, setName] = useState("")
+    const habitContext = useContext(HabitContext)
+
     function handleSubmit(e: SubmitEvent) {
         e.preventDefault()
         if (name.trim() === "")
             return
         setName("")
-        addHabit(name)
+        habitContext?.addHabit(name)
     }
 
     return <form className="flex gap-2" onSubmit={handleSubmit}>
