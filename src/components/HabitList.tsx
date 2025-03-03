@@ -1,25 +1,20 @@
-import { useContext } from "react"
 import { Button } from "./Buttons"
 import { eachDayOfInterval, endOfWeek, format, isFuture, isSameDay, startOfWeek, subDays } from "date-fns"
-import { HabitContext, type Habit } from "../context/HabitProvider"
+import { useHabits, type Habit } from "../context/HabitProvider"
 
 
 
-type HabitListProps = {
-    habits: Habit[],
-    deleteHabit: (id: string) => void,
-    toggleHabit: (id: string, date: Date) => void
-}
 
-export function HabitList({ habits, deleteHabit, toggleHabit }: HabitListProps) {
+export function HabitList() {
 
+    const { habits } = useHabits()
     if (habits.length === 0) {
         return <p className="text-center text-zinc-500 py-12">No habits yet. Add one to above to get started</p>
     }
     return <div className="flex flex-col gap-3">
         {
             habits.map(habit => (
-                <HabitItem key={habit.id} habit={habit} deleteHabit={deleteHabit} toggleHabit={toggleHabit} />
+                <HabitItem key={habit.id} habit={habit} />
             ))
         }
     </div>
@@ -27,12 +22,11 @@ export function HabitList({ habits, deleteHabit, toggleHabit }: HabitListProps) 
 
 type HabitItemprops = {
     habit: Habit
-    deleteHabit: (id: string) => void
-    toggleHabit: (id: string, date: Date) => void
-}
-function HabitItem({ habit, deleteHabit, toggleHabit }: HabitItemprops) {
 
-    const habitContext = useContext(HabitContext)
+}
+function HabitItem({ habit }: HabitItemprops) {
+
+    const { deleteHabit, toggleHabit } = useHabits()
 
     const visibleDates = eachDayOfInterval({ start: startOfWeek(new Date(), { weekStartsOn: 1 }), end: endOfWeek(new Date(), { weekStartsOn: 1 }) })
     const streak = getStreak(habit.completions)
