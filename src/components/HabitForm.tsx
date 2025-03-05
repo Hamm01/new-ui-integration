@@ -1,6 +1,7 @@
 import { useState, type SubmitEvent } from "react";
 import { Button } from "./Buttons";
-import { useHabits } from "../context/HabitProvider";
+import { useHabits } from "../context/UseHabit";
+
 
 
 
