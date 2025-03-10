@@ -1,4 +1,4 @@
-# Habit Tracker App
+# Habit Tracking
 
 A simple and responsive Habit Tracking application built with React.  
 This app helps users track daily habits week-by-week, maintain streaks, and store all progress locally

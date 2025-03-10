@@ -54,7 +54,6 @@ function HabitItem({ habit, visibleDates }: HabitItemprops) {
 function getStreak(completions: Date[]) {
     let streak = 0
     let date = new Date()
-    console.log(completions)
     while (completions.some(c => isSameDay(date, c))) {
         streak++
         date = subDays(date, 1)
